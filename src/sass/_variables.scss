@@ -1,0 +1,17 @@
+:root {
+  --font-style: ;
+}
+
+html[data-theme="light"] {
+  --color-background: #fafafa;
+  --color-bg-highligh: #ffffff;
+
+  --color-text: #111517;
+}
+
+html[data-theme="dark"] {
+  --color-background: #202c36;
+  --color-bg-highligh: #2b3844;
+
+  --color-text: #ffffff;
+}
