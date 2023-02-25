@@ -1,10 +1,12 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
 
+import HeaderBar from "../components/HeaderBar";
+
 const RootLayout = () => {
   return (
     <div>
-      <h1>Test</h1>
+      <HeaderBar />
       <Outlet />
     </div>
   );

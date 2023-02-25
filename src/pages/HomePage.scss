@@ -1,0 +1,13 @@
+@use "../sass/helpers.scss" as *;
+
+.home {
+  &__list {
+    margin: rem(48px) rem(80px);
+    display: grid;
+    justify-content: space-evenly;
+    justify-items: center;
+    column-gap: rem(50px);
+    row-gap: rem(75px);
+    grid-template-columns: repeat(auto-fit, rem(264px));
+  }
+}
