@@ -7,7 +7,7 @@ import "./HomePage.scss";
 
 const HomePage = () => {
   const [countriesList, setCountriesList] = useState([]);
-  const [isLoading, error, sendRequest] = useHttp();
+  const { isLoading, error, sendRequest } = useHttp();
 
   useEffect(() => {
     const applyData = (response) => {
