@@ -63,7 +63,7 @@ const CountryPage = () => {
         languages: generateLanguages(countryData.languages),
       };
 
-      generateBorderNames(countryData.borders);
+      countryData.borders && generateBorderNames(countryData.borders);
       setCountry(obj);
     };
 
@@ -119,16 +119,18 @@ const CountryPage = () => {
             </div>
           </div>
 
-          <div className="country__borders">
-            <h3>Border Countries:</h3>
-            {isBorderLoading
-              ? "Loading..."
-              : country.borders.map((border) => (
-                  <Link key={border} to={`/${border}`}>
-                    {border}
-                  </Link>
-                ))}
-          </div>
+          {country.borders && (
+            <div className="country__borders">
+              <h3>Border Countries:</h3>
+              {isBorderLoading
+                ? "Loading..."
+                : country.borders.map((border) => (
+                    <Link key={border} to={`/${border}`}>
+                      {border}
+                    </Link>
+                  ))}
+            </div>
+          )}
         </div>
       </main>
     </>
