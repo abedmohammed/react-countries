@@ -124,7 +124,9 @@ const CountryPage = () => {
             {isBorderLoading
               ? "Loading..."
               : country.borders.map((border) => (
-                  <Link to={`/${border}`}>{border}</Link>
+                  <Link key={border} to={`/${border}`}>
+                    {border}
+                  </Link>
                 ))}
           </div>
         </div>

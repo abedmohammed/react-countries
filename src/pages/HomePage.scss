@@ -8,6 +8,6 @@
     justify-items: center;
     column-gap: rem(50px);
     row-gap: rem(75px);
-    grid-template-columns: repeat(auto-fit, rem(264px));
+    grid-template-columns: repeat(auto-fill, rem(264px));
   }
 }

@@ -7,7 +7,24 @@ import "./HomePage.scss";
 
 const HomePage = () => {
   const [countriesList, setCountriesList] = useState([]);
+  const [filteredCountries, setfilteredCountries] = useState([]);
   const { isLoading, error, sendRequest } = useHttp();
+
+  const applyFilter = (filterText = "") => {
+    if (filterText.trim() === "") {
+      setfilteredCountries(countriesList);
+    }
+    setfilteredCountries(
+      countriesList.filter((country) => {
+        const { name } = country;
+        return name
+          .toLowerCase()
+          .normalize("NFD")
+          .replace(/[\u0300-\u036f]/g, "")
+          .includes(filterText);
+      })
+    );
+  };
 
   useEffect(() => {
     const applyData = (response) => {
@@ -24,6 +41,7 @@ const HomePage = () => {
       });
 
       setCountriesList(countries);
+      setfilteredCountries(countries);
     };
 
     sendRequest(
@@ -34,12 +52,12 @@ const HomePage = () => {
 
   return (
     <div className="home">
-      <SearchFilter />
+      <SearchFilter applyFilter={applyFilter} />
       <main className="home__list">
         {isLoading && "LOADING..."}
         {error
           ? error
-          : countriesList.map((country) => (
+          : filteredCountries.map((country) => (
               <CountryCard key={country.name} country={country} />
             ))}
       </main>

@@ -1,0 +1,58 @@
+@use "../sass/helpers.scss" as *;
+
+.visuallyhidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+.settings {
+  height: rem(56px);
+  margin: rem(48px) rem(80px);
+
+  &__search {
+    height: 100%;
+    position: relative;
+  }
+
+  &__input {
+    height: 100%;
+    width: rem(480px);
+    padding: rem(18px) rem(30px) rem(18px) rem(74px);
+
+    background-color: var(--color-bg-highlight);
+    border-radius: 5px;
+    box-shadow: 0px 2px 9px rgba(0, 0, 0, 0.0532439);
+    border: none;
+
+    font-size: rem(16px);
+    font-weight: 400;
+    color: var(--color-text);
+
+    &::placeholder {
+      font-size: rem(16px);
+      font-weight: 400;
+      color: var(--color-text);
+    }
+
+    &:focus {
+      outline: none;
+      border: 1px solid var(--color-text);
+    }
+  }
+
+  &__icon {
+    fill: var(--color-text);
+    width: rem(30px);
+
+    position: absolute;
+    top: 50%;
+    left: rem(27px);
+    transform: translateY(-50%);
+  }
+}
