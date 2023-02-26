@@ -1,0 +1,36 @@
+@use "../sass/helpers.scss" as *;
+
+.header {
+  height: rem(80px);
+  background-color: var(--color-bg-highlight);
+  padding: 0 rem(80px);
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.0562443);
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  &__theme {
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    color: inherit;
+    display: flex;
+    align-items: center;
+    gap: rem(10px);
+  }
+
+  &__moon {
+    display: block;
+    width: rem(30px);
+    height: rem(30px);
+    background-color: var(--color-text);
+    -webkit-mask-image: var(--image-theme);
+    -webkit-mask-size: cover;
+  }
+
+  &__text {
+    font-weight: 600;
+    font-size: rem(16px);
+  }
+}

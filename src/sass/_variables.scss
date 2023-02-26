@@ -8,6 +8,8 @@ html[data-theme="light"] {
 
   --color-text: #111517;
   --color-placeholder: #848484;
+
+  --image-theme: url(../assets/images/theme-moon.svg);
 }
 
 html[data-theme="dark"] {
@@ -16,4 +18,6 @@ html[data-theme="dark"] {
 
   --color-text: #ffffff;
   --color-placeholder: #ffffff;
+
+  --image-theme: url(../assets/images/theme-moon-fill.svg);
 }
