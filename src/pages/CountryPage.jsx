@@ -78,53 +78,58 @@ const CountryPage = () => {
   }
 
   return (
-    <main className="country">
-      <div className="country__flag">
-        <img src={country.flag} alt={`${country.name} flag`} />
-      </div>
-      <div className="country__details">
-        <h2 className="country__name">{country.name}</h2>
-        <div className="country__stats">
-          <div className="country__stat">
-            <h3>Population:</h3>
-            <p>{country.population.toLocaleString()}</p>
-          </div>
-          <div className="country__stat">
-            <h3>Region:</h3>
-            <p>{country.region}</p>
-          </div>
-          <div className="country__stat">
-            <h3>Sub Region:</h3>
-            <p>{country.subRegion}</p>
-          </div>
-          <div className="country__stat">
-            <h3>Capital:</h3>
-            <p>{country.capital}</p>
-          </div>
-          <div className="country__stat">
-            <h3>Top Level Domain:</h3>
-            <p>{country.topLevelDomain}</p>
-          </div>
-          <div className="country__stat">
-            <h3>Currencies:</h3>
-            <p>{country.currencies.join(", ")}</p>
-          </div>
-          <div className="country__stat">
-            <h3>Languages:</h3>
-            <p>{country.languages.join(", ")}</p>
-          </div>
+    <>
+      <Link to={`/`} className="back_btn">
+        &larr; Back
+      </Link>
+      <main className="country">
+        <div className="country__flag">
+          <img src={country.flag} alt={`${country.name} flag`} />
         </div>
+        <div className="country__details">
+          <h2 className="country__name">{country.name}</h2>
+          <div className="country__stats">
+            <div className="country__stat">
+              <h3>Population:</h3>
+              <p>{country.population.toLocaleString()}</p>
+            </div>
+            <div className="country__stat">
+              <h3>Region:</h3>
+              <p>{country.region}</p>
+            </div>
+            <div className="country__stat">
+              <h3>Sub Region:</h3>
+              <p>{country.subRegion}</p>
+            </div>
+            <div className="country__stat">
+              <h3>Capital:</h3>
+              <p>{country.capital}</p>
+            </div>
+            <div className="country__stat">
+              <h3>Top Level Domain:</h3>
+              <p>{country.topLevelDomain}</p>
+            </div>
+            <div className="country__stat">
+              <h3>Currencies:</h3>
+              <p>{country.currencies.join(", ")}</p>
+            </div>
+            <div className="country__stat">
+              <h3>Languages:</h3>
+              <p>{country.languages.join(", ")}</p>
+            </div>
+          </div>
 
-        <div className="country__borders">
-          <h3>Border Countries:</h3>
-          {isBorderLoading
-            ? "Loading..."
-            : country.borders.map((border) => (
-                <Link to={`/${border}`}>{border}</Link>
-              ))}
+          <div className="country__borders">
+            <h3>Border Countries:</h3>
+            {isBorderLoading
+              ? "Loading..."
+              : country.borders.map((border) => (
+                  <Link to={`/${border}`}>{border}</Link>
+                ))}
+          </div>
         </div>
-      </div>
-    </main>
+      </main>
+    </>
   );
 };
 
