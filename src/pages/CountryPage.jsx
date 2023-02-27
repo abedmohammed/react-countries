@@ -57,7 +57,7 @@ const CountryPage = () => {
         population: countryData.population,
         region: countryData.region,
         subRegion: countryData.subregion,
-        capital: countryData.capital[0],
+        capital: countryData.capital && countryData.capital[0],
         topLevelDomain: countryData.tld[0],
         currencies: generateCurrencies(countryData.currencies),
         languages: generateLanguages(countryData.languages),
@@ -89,34 +89,48 @@ const CountryPage = () => {
         <div className="country__details">
           <h2 className="country__name">{country.name}</h2>
           <div className="country__stats">
-            <div className="country__stat">
-              <h3>Population:</h3>
-              <p>{country.population.toLocaleString()}</p>
-            </div>
-            <div className="country__stat">
-              <h3>Region:</h3>
-              <p>{country.region}</p>
-            </div>
-            <div className="country__stat">
-              <h3>Sub Region:</h3>
-              <p>{country.subRegion}</p>
-            </div>
-            <div className="country__stat">
-              <h3>Capital:</h3>
-              <p>{country.capital}</p>
-            </div>
-            <div className="country__stat">
-              <h3>Top Level Domain:</h3>
-              <p>{country.topLevelDomain}</p>
-            </div>
-            <div className="country__stat">
-              <h3>Currencies:</h3>
-              <p>{country.currencies.join(", ")}</p>
-            </div>
-            <div className="country__stat">
-              <h3>Languages:</h3>
-              <p>{country.languages.join(", ")}</p>
-            </div>
+            {country.population && (
+              <div className="country__stat">
+                <h3>Population:</h3>
+                <p>{country.population.toLocaleString()}</p>
+              </div>
+            )}
+            {country.region && (
+              <div className="country__stat">
+                <h3>Region:</h3>
+                <p>{country.region}</p>
+              </div>
+            )}
+            {country.subRegion && (
+              <div className="country__stat">
+                <h3>Sub Region:</h3>
+                <p>{country.subRegion}</p>
+              </div>
+            )}
+            {country.capital && (
+              <div className="country__stat">
+                <h3>Capital:</h3>
+                <p>{country.capital}</p>
+              </div>
+            )}
+            {country.topLevelDomain && (
+              <div className="country__stat">
+                <h3>Top Level Domain:</h3>
+                <p>{country.topLevelDomain}</p>
+              </div>
+            )}
+            {country.currencies && (
+              <div className="country__stat">
+                <h3>Currencies:</h3>
+                <p>{country.currencies.join(", ")}</p>
+              </div>
+            )}
+            {country.languages && (
+              <div className="country__stat">
+                <h3>Languages:</h3>
+                <p>{country.languages.join(", ")}</p>
+              </div>
+            )}
           </div>
 
           {country.borders && (

@@ -8,11 +8,19 @@ body {
 h1 {
   font-size: rem(24px);
   font-weight: 800;
+
+  @media only screen and (max-width: 28.5em) {
+    font-size: rem(18px);
+  }
 }
 
 .header__theme p {
   font-size: rem(16px);
   font-weight: 600;
+
+  @media only screen and (max-width: 28.5em) {
+    font-size: rem(14px);
+  }
 }
 
 .home {

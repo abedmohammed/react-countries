@@ -15,6 +15,10 @@
   height: rem(56px);
   margin: rem(48px) rem(80px);
 
+  @media only screen and (max-width: 36em) {
+    margin: rem(32px) rem(24px);
+  }
+
   &__search {
     height: 100%;
     position: relative;
@@ -33,6 +37,14 @@
     font-size: rem(16px);
     font-weight: 400;
     color: var(--color-text);
+
+    @media only screen and (max-width: 36em) {
+      width: 100%;
+    }
+
+    @media only screen and (max-width: 25em) {
+      font-size: rem(20px);
+    }
 
     &::placeholder {
       font-size: rem(16px);

@@ -10,6 +10,10 @@
   justify-content: space-between;
   align-items: center;
 
+  @media only screen and (max-width: 36em) {
+    padding: 0 rem(28px);
+  }
+
   &__theme {
     cursor: pointer;
     background: transparent;
@@ -27,6 +31,11 @@
     background-color: var(--color-text);
     -webkit-mask-image: var(--image-theme);
     -webkit-mask-size: cover;
+
+    @media only screen and (max-width: 28.5em) {
+      width: rem(24px);
+      height: rem(24px);
+    }
   }
 
   &__text {

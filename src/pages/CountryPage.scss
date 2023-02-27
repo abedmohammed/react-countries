@@ -6,11 +6,31 @@
   align-items: center;
   gap: rem(144px);
 
+  @media only screen and (max-width: 84em) {
+    gap: rem(80px);
+  }
+
+  @media only screen and (max-width: 78em) {
+    margin: rem(56px);
+  }
+
+  @media only screen and (max-width: 53em) {
+    display: block;
+  }
+
+  @media only screen and (max-width: 30em) {
+    margin: rem(26px);
+  }
+
   &__flag {
     max-width: rem(600px);
     background-color: aqua;
     border-radius: 10px;
     overflow: hidden;
+
+    @media only screen and (max-width: 53em) {
+      margin: rem(64px) auto rem(44px) 0;
+    }
 
     img {
       height: 100%;
@@ -33,15 +53,35 @@
   &__stats {
     display: flex;
     flex-direction: column;
-    gap: rem(8px);
+    row-gap: rem(8px);
+    column-gap: rem(24px);
     flex-wrap: wrap;
     height: rem(170px);
     margin-bottom: rem(30px);
+
+    @media only screen and (max-width: 78em) {
+      flex-wrap: nowrap;
+      height: auto;
+    }
   }
 
   &__stat {
     display: flex;
     gap: rem(4px);
+
+    p {
+      @media only screen and (max-width: 100em) {
+        max-width: rem(200px);
+      }
+
+      @media only screen and (max-width: 84em) {
+        max-width: rem(150px);
+      }
+
+      @media only screen and (max-width: 78em) {
+        max-width: none;
+      }
+    }
 
     &:not(:last-child) {
       margin-bottom: rem(8px);
@@ -90,6 +130,14 @@
   border-radius: 6px;
   margin: rem(80px);
   box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.293139);
+
+  @media only screen and (max-width: 78em) {
+    margin: rem(56px);
+  }
+
+  @media only screen and (max-width: 30em) {
+    margin: rem(26px);
+  }
 
   transition: transform 0.2s;
   &:hover,
