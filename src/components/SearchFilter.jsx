@@ -7,7 +7,7 @@ const SearchFilter = ({ applyFilter }) => {
 
   const searchHandler = (e) => {
     const text = e.target.value;
-    applyFilter(text.toLowerCase());
+    applyFilter(text.toLowerCase().replace(/\s/g, ""));
     setSearchInput(text);
   };
 

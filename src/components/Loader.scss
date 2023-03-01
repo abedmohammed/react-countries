@@ -1,0 +1,19 @@
+@use "../sass/helpers.scss" as *;
+@use "../sass/animations";
+
+.loader {
+  height: 40vh;
+  height: 40dvh;
+
+  display: grid;
+  place-content: center;
+
+  &__spinner {
+    border: 8px solid var(--color-bg-highlight);
+    border-top: 8px solid var(--color-text);
+    border-radius: 50%;
+    width: rem(80px);
+    height: rem(80px);
+    animation: spin 1s linear infinite;
+  }
+}

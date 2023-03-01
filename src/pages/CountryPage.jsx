@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import Loader from "../components/Loader";
 import useHttp from "../hooks/use-http";
 
 import "./CountryPage.scss";
@@ -8,9 +9,12 @@ const CountryPage = () => {
   const { countryName } = useParams();
   const [country, setCountry] = useState();
 
-  const { isLoading, sendRequest } = useHttp();
-  const { isLoading: isBorderLoading, sendRequest: sendBordersRequest } =
-    useHttp();
+  const { isLoading, sendRequest, error } = useHttp();
+  const {
+    isLoading: isBorderLoading,
+    sendRequest: sendBordersRequest,
+    errorBorders,
+  } = useHttp();
 
   useEffect(() => {
     const applyData = (data) => {
@@ -73,80 +77,87 @@ const CountryPage = () => {
     );
   }, [sendRequest, sendBordersRequest, countryName]);
 
-  if (isLoading || !country?.name) {
-    return <p>Loading...</p>;
-  }
+  useEffect(() => {
+    if (error || errorBorders) {
+      const errorMsg = error || errorBorders;
+      throw new Error(errorMsg);
+    }
+  }, [error, errorBorders]);
 
   return (
     <>
       <Link to={`/`} className="back_btn">
         &larr; Back
       </Link>
-      <main className="country">
-        <div className="country__flag">
-          <img src={country.flag} alt={`${country.name} flag`} />
-        </div>
-        <div className="country__details">
-          <h2 className="country__name">{country.name}</h2>
-          <div className="country__stats">
-            {country.population && (
-              <div className="country__stat">
-                <h3>Population:</h3>
-                <p>{country.population.toLocaleString()}</p>
-              </div>
-            )}
-            {country.region && (
-              <div className="country__stat">
-                <h3>Region:</h3>
-                <p>{country.region}</p>
-              </div>
-            )}
-            {country.subRegion && (
-              <div className="country__stat">
-                <h3>Sub Region:</h3>
-                <p>{country.subRegion}</p>
-              </div>
-            )}
-            {country.capital && (
-              <div className="country__stat">
-                <h3>Capital:</h3>
-                <p>{country.capital}</p>
-              </div>
-            )}
-            {country.topLevelDomain && (
-              <div className="country__stat">
-                <h3>Top Level Domain:</h3>
-                <p>{country.topLevelDomain}</p>
-              </div>
-            )}
-            {country.currencies && (
-              <div className="country__stat">
-                <h3>Currencies:</h3>
-                <p>{country.currencies.join(", ")}</p>
-              </div>
-            )}
-            {country.languages && (
-              <div className="country__stat">
-                <h3>Languages:</h3>
-                <p>{country.languages.join(", ")}</p>
+      {isLoading || !country?.name ? (
+        <Loader />
+      ) : (
+        <main className="country">
+          <div className="country__flag">
+            <img src={country.flag} alt={`${country.name} flag`} />
+          </div>
+          <div className="country__details">
+            <h2 className="country__name">{country.name}</h2>
+            <div className="country__stats">
+              {country.population && (
+                <div className="country__stat">
+                  <h3>Population:</h3>
+                  <p>{country.population.toLocaleString()}</p>
+                </div>
+              )}
+              {country.region && (
+                <div className="country__stat">
+                  <h3>Region:</h3>
+                  <p>{country.region}</p>
+                </div>
+              )}
+              {country.subRegion && (
+                <div className="country__stat">
+                  <h3>Sub Region:</h3>
+                  <p>{country.subRegion}</p>
+                </div>
+              )}
+              {country.capital && (
+                <div className="country__stat">
+                  <h3>Capital:</h3>
+                  <p>{country.capital}</p>
+                </div>
+              )}
+              {country.topLevelDomain && (
+                <div className="country__stat">
+                  <h3>Top Level Domain:</h3>
+                  <p>{country.topLevelDomain}</p>
+                </div>
+              )}
+              {country.currencies && (
+                <div className="country__stat">
+                  <h3>Currencies:</h3>
+                  <p>{country.currencies.join(", ")}</p>
+                </div>
+              )}
+              {country.languages && (
+                <div className="country__stat">
+                  <h3>Languages:</h3>
+                  <p>{country.languages.join(", ")}</p>
+                </div>
+              )}
+            </div>
+
+            {country.borders && (
+              <div className="country__borders">
+                <h3>Border Countries:</h3>
+                {isBorderLoading
+                  ? "Loading..."
+                  : country.borders.map((border) => (
+                      <Link key={border} to={`/${border}`}>
+                        {border}
+                      </Link>
+                    ))}
               </div>
             )}
           </div>
-
-          {country.borders && (
-            <div className="country__borders">
-              <h3>Border Countries:</h3>
-              {isBorderLoading
-                ? "Loading..."
-                : country.borders.map((border) => (
-                    <Link key={border} to={`/${border}`}>
-                      {border}
-                    </Link>
-                  ))}
-            </div>
-          )}
-        </div>
-      </main>
+        </main>
+      )}
     </>
   );
 };

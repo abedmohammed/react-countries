@@ -11,27 +11,14 @@ const useHttp = () => {
     try {
       const response = await fetch(requestURL);
 
-      if (response.status === 503) {
-        throw new Error({
-          description: "Countries API seems to be currently unavailable 😣",
-          status: response.status,
-        });
-      }
-
-      if (!response.ok) {
-        throw new Error({
-          status: response.status,
-        });
+      if (!response.ok || response.status === 503) {
+        throw new Error(response.status);
       }
 
       const data = await response.json();
       applyData(data);
     } catch (err) {
-      console.error(err);
-      setError(
-        err.description ||
-          "Oops! Something went wrong! Please try again later... 😓"
-      );
+      setError(err.message);
     }
     setIsLoading(false);
   }, []);

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import CountryCard from "../components/CountryCard";
+import Loader from "../components/Loader";
 import SearchFilter from "../components/SearchFilter";
 import useHttp from "../hooks/use-http";
 
@@ -14,14 +15,18 @@ const HomePage = () => {
     if (filterText.trim() === "") {
       setfilteredCountries(countriesList);
     }
+
     setfilteredCountries(
       countriesList.filter((country) => {
         const { name } = country;
-        return name
+        const formattedName = name
           .toLowerCase()
+          .trim()
           .normalize("NFD")
           .replace(/[\u0300-\u036f]/g, "")
-          .includes(filterText);
+          .replace(/\s/g, "");
+
+        return formattedName.includes(filterText);
       })
     );
   };
@@ -53,14 +58,17 @@ const HomePage = () => {
   return (
     <div className="home">
       <SearchFilter applyFilter={applyFilter} />
-      <main className="home__list">
-        {isLoading && "LOADING..."}
-        {error
-          ? error
-          : filteredCountries.map((country) => (
-              <CountryCard key={country.name} country={country} />
-            ))}
-      </main>
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <main className="home__list">
+          {error
+            ? error
+            : filteredCountries.map((country) => (
+                <CountryCard key={country.name} country={country} />
+              ))}
+        </main>
+      )}
     </div>
   );
 };
